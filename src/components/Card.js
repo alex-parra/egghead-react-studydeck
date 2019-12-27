@@ -9,7 +9,7 @@ const Card = props => {
     <div className={cardClassName} onClick={() => onFlip(card)}>
       <div className="sides">
         <div className="front">{card.term}</div>
-        <div className="back">{card.answer}</div>
+        <div className="back">{isFlipped ? card.answer : ''}</div>
       </div>
     </div>
   );
