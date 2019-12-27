@@ -1,19 +1,27 @@
 import React from 'react';
 import './App.css';
 import Card from './components/Card';
-import CardsData from './services/cards';
+import { getCards } from './services/cards';
 
 function App() {
-  const [cards, setCards] = React.useState(CardsData.map(card => ({ ...card, flipped: false })));
+  const [cards, setCards] = React.useState([]);
+
+  React.useEffect(() => {
+    (async () => {
+      const { cards, error } = await getCards();
+      if (error) return;
+      const cardsState = cards.map(card => ({ ...card, flipped: false }));
+      setCards(cardsState);
+    })();
+  }, []);
 
   const flipCard = cardToFlip => {
-    setCards(state => {
-      const updatedCards = state.map(card => {
-        const flipped = card.id === cardToFlip.id ? !card.flipped : card.flipped;
-        return { ...card, flipped };
-      });
-      return updatedCards;
-    });
+    setCards(state =>
+      state.map(card => {
+        if (card.id !== cardToFlip.id) return card;
+        return { ...card, flipped: !card.flipped };
+      })
+    );
   };
 
   return (
