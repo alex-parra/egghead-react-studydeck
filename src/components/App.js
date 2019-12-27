@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Card from './components/Card';
-import { getCards } from './services/cards';
+import Card from './Card';
+import { getCards } from '../services/cards';
 
 function App() {
   const [cards, setCards] = React.useState([]);
