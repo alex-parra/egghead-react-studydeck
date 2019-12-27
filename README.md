@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Studydeck with React+Hooks
+
+Based on https://egghead.io/playlists/build-a-react-app-with-the-hooks-api-3010  
 
 ## Available Scripts
 
