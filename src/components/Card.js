@@ -5,8 +5,17 @@ const Card = props => {
   const isFlipped = card.flipped || false;
   const cardClassName = 'card ' + (isFlipped ? 'flipped' : '');
 
+  const handleClick = ev => {
+    ev.preventDefault();
+    onFlip(card);
+  }
+
+  const handleMouseLeave = ev => {
+    if( isFlipped ) onFlip(card);
+  }
+
   return (
-    <div className={cardClassName} onClick={() => onFlip(card)}>
+    <div className={cardClassName} onClick={handleClick} onMouseLeave={handleMouseLeave}>
       <div className="sides">
         <div className="front">{card.term}</div>
         <div className="back">{isFlipped ? card.answer : ''}</div>
